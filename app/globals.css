@@ -2,6 +2,13 @@
 
 @custom-variant dark (&:is(.dark *));
 
+
+@layer components {
+  .container {
+    @apply mx-auto max-w-6xl xl:max-w-7xl px-8;
+  }
+}
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);

@@ -1,6 +1,14 @@
+import Providers from '@/app/providers';
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import Navbar from '@/components/navbar/Navbar';
+
+import { Inter } from "next/font/google";
+
+
+
+const inter = Inter({ subsets: ["latin"] });
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -23,11 +31,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
+    <html lang='en' suppressHydrationWarning>
+      <body className={inter.className}>
+        <Providers>
+          <Navbar />
+          <main className='container py-10'>{children}</main>
+        </Providers>
       </body>
     </html>
   );
