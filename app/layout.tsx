@@ -1,12 +1,10 @@
-import Providers from '@/app/providers';
+import Providers from "@/app/providers";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import Navbar from '@/components/navbar/Navbar';
-
+import Navbar from "@/components/navbar/Navbar";
+import { ClerkProvider } from "@clerk/nextjs";
 import { Inter } from "next/font/google";
-
-
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,8 +19,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: 'HomeAway',
-  description: 'Feel at home, away from home.',
+  title: "HomeAway",
+  description: "Feel at home, away from home.",
 };
 
 export default function RootLayout({
@@ -31,13 +29,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang='en' suppressHydrationWarning>
-      <body className={inter.className}>
-        <Providers>
-          <Navbar />
-          <main className='container py-10'>{children}</main>
-        </Providers>
-      </body>
-    </html>
+    <ClerkProvider>
+      <html lang="en" suppressHydrationWarning>
+        <body className={inter.className}>
+          <Providers>
+            <Navbar />
+            <main className="container py-10">{children}</main>
+          </Providers>
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }
